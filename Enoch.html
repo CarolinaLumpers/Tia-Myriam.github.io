@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Enoch Calendar Today</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #f4f4f4; color: #333; }
+    #enochDate { font-size: 1.5em; }
+  </style>
+</head>
+<body>
+  <div id="enochDate">Loading Enoch Date...</div>
+
+  <script>
+    // Aviv 1 begins March 26, 2025 at 6:00 PM (Eastern Time)
+    const aviv1 = new Date('2025-03-26T18:00:00-04:00'); // EDT
+
+    function getEnochDate() {
+      const now = new Date();
+      const diff = now - aviv1;
+      const daysSince = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const dayOfYear = (daysSince + 1) % 364;
+
+      const monthDay = (dayOfYear % 30) + 1;
+      const month = Math.floor(dayOfYear / 30) + 1;
+
+      const enochYear = 2025 + Math.floor((daysSince + 1) / 364);
+      return `Today is the ${monthDay}th day of the ${month}th Month, Year ${enochYear} (Enoch Calendar)`;
+    }
+
+    document.getElementById("enochDate").innerText = getEnochDate();
+  </script>
+</body>
+</html>
